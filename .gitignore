@@ -3,3 +3,4 @@
 .github
 .gitattributes
 test/**
+node_modules/**

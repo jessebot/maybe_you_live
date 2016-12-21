@@ -1,5 +1,5 @@
-derp derp derp
+An attempt at a cooking site using tornado, polymer, and elastic search
 
--- an attempt at a cooking site using tornado, polymer, and elastic search
+You will need: bower, pip, love
 
-cause lolz - dis mah lyfe
+Author: Jesse, kind of.
