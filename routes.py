@@ -1,21 +1,18 @@
+# Jesse's tornao + polymer mess
 import os
 from tornado import web, wsgi
 import wsgiref.simple_server
 
-# class MainHandler(tornado.web.RequestHandler):
-#     def get(self):
-#         self.write("Hello, world")
-
 settings = {
     "static_path": "./static",
-    "server_name": "maybeyou.live",
+    "app_name": "Maybe You Live",
     "debug": True,
 }
 
 class MainHandler(web.RequestHandler):
     def get(self):
         self.render(settings['static_path'] + "/templates/index.html",
-                    server_name=settings['server_name'])
+                    app_name=settings['app_name'])
 
 if __name__ == "__main__":
     application = web.Application([
