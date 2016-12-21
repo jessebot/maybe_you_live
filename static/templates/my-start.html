@@ -9,9 +9,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-slider/paper-slider.html">
 <link rel="import" href="shared-styles.html">
 
-<dom-module id="my-view2">
+<dom-module id="my-start">
   <template>
     <style include="shared-styles">
       :host {
@@ -23,15 +24,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <div class="card">
       <div class="circle">2</div>
-      <h1>View Two</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+      <h1>Let's get started!</h1>
+      <p>What's horribly horribly wrong with you?</p>
+      <paper-input label="Just start typing..." required auto-validate error-message="needs some text!"></paper-input>
+
+      
     </div>
   </template>
 
   <script>
     Polymer({
-      is: 'my-view2',
+      is: 'my-start',
     });
   </script>
 </dom-module>
