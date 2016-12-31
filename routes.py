@@ -1,4 +1,4 @@
-# Jesse's tornao + polymer mess
+# Jesse's tornado + polymer mess
 import os
 from tornado import web, wsgi
 import wsgiref.simple_server
