@@ -37,13 +37,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: #000;
         background-color: var(--app-primary-color);
       }
-      app-header paper-icon-button {
-        --paper-icon-button-ink-color: silver;
-      }
-
 
       .drawer-list {
         margin: 0 20px;
+        background-color: var(--app-primary-color);
       }
 
       .drawer-list a {
@@ -82,7 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-header-layout has-scrolling-region>
 
         <app-header reveals effects="waterfall">
-          <app-toolbar>
+          <app-toolbar class="animate has-shadow">
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
           </app-toolbar>
         </app-header>
