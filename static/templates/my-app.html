@@ -29,14 +29,21 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      <style>
       :host {
         --app-primary-color: #484e6e;
-        --app-secondary-color: black;
+        --app-secondary-color: gray;
         display: block;
       }
 
-      app-header {
-        color: #000;
+      #contentContainer {
         background-color: var(--app-primary-color);
       }
+
+      app-header {
+        background-color: var(--app-primary-color);
+      }
+
+      app-drawer {
+        color: white;
+       }
 
       .drawer-list {
         margin: 0 20px;
@@ -47,13 +54,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 0 16px;
         text-decoration: none;
-        color: var(--app-secondary-color);
+        color: gray;
         line-height: 40px;
       }
 
       .drawer-list a.iron-selected {
-        color: black;
-        font-weight: bold;
+        color: silver;
+        background-color: #373b50;
       }
     </style>
 
@@ -67,19 +74,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <app-drawer-layout force-narrow>
       <!-- Drawer content -->
       <app-drawer id="drawer" swipe-open>
-        <app-toolbar>Maybe You Live?</app-toolbar>
+        <app-toolbar>
+         <div main-title> Maybe You Live?</div>
+        </app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="start" href="/start">Start Here</a>
-          <a name="random" href="/random">Random</a>
           <a name="about" href="/about">About</a>
         </iron-selector>
-      </app-drawer>
+     </app-drawer>
 
       <!-- Header -->
       <app-header-layout has-scrolling-region>
 
-        <app-header reveals effects="waterfall">
-          <app-toolbar class="animate has-shadow">
+        <app-header reveals condenses effects="waterfall">
+          <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
           </app-toolbar>
         </app-header>
@@ -92,7 +100,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             fallback-selection="view404"
             role="main">
           <my-start name="start"></my-start>
-          <my-random name="random"></my-random>
           <my-about name="about"></my-about>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
@@ -118,7 +125,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'about';
+        this.page = page || 'start';
 
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
