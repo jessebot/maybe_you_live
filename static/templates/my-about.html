@@ -9,6 +9,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-about">
@@ -18,16 +20,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       :host {
         display: block;
 
-        padding: 70px;
+        padding: 110px 110px;
+        position: absolute;
       }
     </style>
 
-    <div class="card">
-      <br />
-      <h1>About</h1>
-      <p>This shall be a site where we eat healthy.</p>
-      <p>....for once.</p>
+<style is="custom-style">
+  paper-card.rate { @apply(--layout-horizontal); }
+  .rate-image {
+    margin-top: 30px;
+    margin-right: 20px;
+    margin-left: 20px;
+    width: 166px;
+    height: 250px;
+    background: url('/static/images/MYLL-about-hack.png');
+  }
+  .rate-content {
+    @apply(--layout-flex);
+    float: left;
+  }
+</style>
+<paper-card class="rate">
+  <div class="rate-content">
+      <p><h1>Core foundation ideas</h1></p>
+      <p><ul>
+      <li><i>Balance is critical</i> : Nutritional variety is key to living a healthier life.</li>
+      <li><i>Know what you eat</i> : Always read nutrition labels and ingredients.</li>
+      <li><i>Stick with it</i> : Habits produce results and results take time.</li>
+      <li><i>No one is perfect</i> : Failure is part of learning how to improve (reword)</li>
+      </ul></p>
     </div>
+    <div class="card-actions">
+    </div>
+  </div>
+  <div class="rate-image"></div>
+</paper-card>
   </template>
 
   <script>
