@@ -1,6 +1,7 @@
 # Jesse's tornado + polymer mess
 import os
 from tornado import web, wsgi
+import sys
 import wsgiref.simple_server
 
 settings = {
@@ -14,9 +15,16 @@ class MainHandler(web.RequestHandler):
         self.render(settings['static_path'] + "/templates/index.html",
                     app_name=settings['app_name'])
 
+class inputPage(web.RequestHandler):
+    def get(self):
+        self.render(settings['static_path'] + "/templates/index.html",
+                    app_name=settings['app_name'])
+
+
 if __name__ == "__main__":
     application = web.Application([
         (r"/", MainHandler),
+        (r"/input", inputPage),
         (r"/static/(.*)", web.StaticFileHandler,
          {"path": settings['static_path']}),
     ], **settings)
