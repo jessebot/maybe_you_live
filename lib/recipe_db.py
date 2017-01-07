@@ -1,19 +1,32 @@
 #!/usr/bin/python
 # MySQL querying and updates for a recipe site
 # By Jesse Hunt
-import argparse
-import logging
 import sys
 import MySQLdb
-# import yaml
+import yaml
 
-logging.basicConfig(stream=sys.stderr, level=logging.INFO)
-logging.info("Maybeyou.live database libs: logging config loaded")
+
+def get_database_variable(global_variable):
+    """ gets global variable given string variable name"""
+    with open('../.config/database_config.yaml', 'r') as f:
+        doc = yaml.load(f)
+    # txt = doc["database_yo"][global_variable]
+    txt = doc[global_variable]
+    return txt
 
 
 class recipeDatabaseJunk():
+    """Class to do all the database lifting on maybeyou.live"""
+
+    # grab all the yaml info
+
+    db_host = get_database_variable("db_host")
+    db_user = get_database_variable("db_user")
+    db_pass = get_database_variable("db_pass")
+    db_name = get_database_variable("db_name")
+
     db = MySQLdb.connect(host=db_host, user=db_user, passwd=db_pass,
-                         db=database)
+                         db=db_name)
     cur = db.cursor()
 
     def destroy(self,):
