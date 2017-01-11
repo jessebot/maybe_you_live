@@ -10,7 +10,6 @@ def get_database_variable(global_variable):
     """ gets global variable given string variable name"""
     with open('../.config/database_config.yaml', 'r') as f:
         doc = yaml.load(f)
-    # txt = doc["database_yo"][global_variable]
     txt = doc[global_variable]
     return txt
 
