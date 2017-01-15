@@ -1,7 +1,9 @@
 #!/usr/bin/python
 # usda API script by jesse to add stuff to maybeyoulive
 import json
+import pprint
 import requests
+from xml.etree import ElementTree
 import yaml
 
 
@@ -19,12 +21,12 @@ class pull_nutritional_data():
     usda_key = get_usda_key()
 
     def get_food_report(self, usda_id):
-        data = "&".join(['format=xml', 'type=f', 'ndbno=' + usda_id,
+        data = "&".join(['format=json', 'type=f', 'ndbno=' + usda_id,
                          'api_key=' + self.usda_key])
         r = requests.get('http://api.nal.usda.gov/usda/ndb/reports/?' + data)
-        #r.json()
-        #print r.json()
-        print r
+        # r.json()
+        # print r.json()
+        pprint.pprint(json.loads(r.text))
 
     def get_food_ndbno(self, food_str):
         # bother the USDA. They're not doing anything important anyway...
