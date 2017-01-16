@@ -23,6 +23,14 @@ class pull_nutritional_data():
     # grab custom USDA issued API key
     usda_key = get_usda_key()
 
+    def get_food_ndbno(self, food_str):
+        # bother the USDA. They're not doing anything important anyway...
+        data = "&".join(['format=json', 'q=' + food_str, 'max=25', 'offset=0',
+                         'api_key=' + self.usda_key])
+        resp = requests.get('http://api.nal.usda.gov/usda/ndb/search/?' + data)
+        report_dict = json.loads(resp.text)['list']
+        return report_dict['item'][0]['ndbno']
+
     def get_food_report(self, usda_id):
         """
         Core function of class, Queries API directly.
@@ -30,7 +38,8 @@ class pull_nutritional_data():
 
         data = "&".join(['format=json', 'type=f', 'ndbno=' + usda_id,
                          'api_key=' + self.usda_key])
-        resp = requests.get('http://api.nal.usda.gov/usda/ndb/reports/?' + data)
+        resp = requests.get('http://api.nal.usda.gov/usda/ndb/reports/?' +
+                            data)
         # you start out with a giant "report"
         report_dict = json.loads(resp.text)['report']
         # the most needless content wrapper...
@@ -160,33 +169,50 @@ class pull_nutritional_data():
         # add the cholesterol
         r_dict['cholesterol'] = str(nutrients[90]['value']) + nutrients[90]['unit']
 
-        print " Here's just the nutritional data for 100g ".center(80, "*")
-        for key, value in r_dict.iteritems():
-            print key, " : ", value
+        # all done!
+        return r_dict
 
-        print "\n"
-        # first, let's store the measurements
-        measures_dicts = nutrients[0]['measures']
-        print " Here's all known measurements of this food ".center(80, "*")
-        for measure_dict in measures_dicts:
-            print "label: ", measure_dict['label']
-            print "amount in this measurment: ", measure_dict['eqv'], "g"
+    def get_food_measurements(self, usda_id):
+        """
+        just kinds of measurements
+        """
 
-    def get_food_ndbno(self, food_str):
-        # bother the USDA. They're not doing anything important anyway...
-        data = "&".join(['format=json', 'q=' + food_str, 'max=25', 'offset=0',
+        data = "&".join(['format=json', 'type=f', 'ndbno=' + usda_id,
                          'api_key=' + self.usda_key])
-        resp = requests.get('http://api.nal.usda.gov/usda/ndb/search/?' + data)
-        report_dict = json.loads(resp.text)['list']
-        return report_dict['item'][0]['ndbno']
+        resp = requests.get('http://api.nal.usda.gov/usda/ndb/reports/?' + data)
+        # you start out with a giant "report"
+        report_dict = json.loads(resp.text)['report']
+        # the most needless content wrapper...
+        food_dict = report_dict['food']
+
+        # there we freakin' go~! The data we actually care about <3
+        nutrients = food_dict['nutrients']
+
+        return nutrients[0]['measures']
 
 
 if __name__ == "__main__":
+
     # initialize the nutritional data API
-    derp = pull_nutritional_data()
-    print "Let's search for 'raw carrot':\n"
+    usda_ndb = pull_nutritional_data()
 
-    nutritional_db_no = derp.get_food_ndbno("raw carrot")
-    print "nutritional_db_no: ", nutritional_db_no, "\n"
+    # prompt user for string of food they want...
+    some_food = raw_input("Tell me what food you'd like to learn about: ")
 
-    print derp.get_food_report(nutritional_db_no)
+    # the first number we find
+    nutritional_db_no = usda_ndb.get_food_ndbno(some_food)
+    print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
+
+    # all macros, some micros
+    print " Here's just the nutritional data for 100g ".center(80, "*")
+    base_food_dict = usda_ndb.get_food_report(nutritional_db_no)
+    for key, value in base_food_dict.iteritems():
+        print key, " : ", value
+
+    # other known measurements
+    print ""
+    print " Here's all known measurements of this food ".center(80, "*")
+    measures_dicts = usda_ndb.get_food_measurements(nutritional_db_no)
+    for measure_dict in measures_dicts:
+        print "label: ", measure_dict['label']
+        print "amount in this measurment: ", measure_dict['eqv'], "g\n"
