@@ -1,11 +1,7 @@
 #!/usr/bin/python
 # usda API script by jesse to add stuff to maybeyoulive
-import ast
 import json
-import pprint
 import requests
-import unicodedata
-from xml.etree import ElementTree
 import yaml
 
 
@@ -17,6 +13,7 @@ def get_usda_key():
         doc = yaml.load(f)
     api_key = doc["api_key"]
     return api_key
+
 
 class pull_nutritional_data():
     """
@@ -45,16 +42,16 @@ class pull_nutritional_data():
 
         # add the calories
         r_dict['calories'] = str(nutrients[1]['value']) + nutrients[1]['unit']
-        
+
         # add the protein
         r_dict['protein'] = str(nutrients[3]['value']) + nutrients[3]['unit']
-        
+
         # add the lipids
         r_dict['lipids'] = str(nutrients[4]['value']) + nutrients[4]['unit']
-       
+
         # add the carbs
         r_dict['carbs'] = str(nutrients[6]['value']) + nutrients[6]['unit']
-        
+
         # add the fiber
         r_dict['fiber'] = str(nutrients[7]['value']) + nutrients[7]['unit']
 
@@ -192,4 +189,4 @@ if __name__ == "__main__":
     nutritional_db_no = derp.get_food_ndbno("raw carrot")
     print "nutritional_db_no: ", nutritional_db_no, "\n"
 
-    print  derp.get_food_report(nutritional_db_no)
+    print derp.get_food_report(nutritional_db_no)
