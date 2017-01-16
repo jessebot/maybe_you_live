@@ -1,5 +1,6 @@
 #!/usr/bin/python
-# usda API script by jesse to add stuff to maybeyoulive
+# usda API script and libraries by jessebot to add stuff to maybeyou.live
+# only tested with Python 2.7.12
 import json
 import requests
 import yaml
@@ -197,10 +198,10 @@ if __name__ == "__main__":
     usda_ndb = pull_nutritional_data()
 
     # prompt user for string of food they want...
-    print ('\nWelcome to the USDA Nutritional Database. I will be your guide' +
-           '. This isn\'t going \nto be pretty, but we\'ll get the job done' +
-           '. When asked, be specific about what you\nwant, so "raw carrot"' +
-           'instead of "carrot". It might still fail though...')
+    print('\nWelcome to the USDA Nutritional Database. I will be your guide' +
+          '. This isn\'t going \nto be pretty, but we\'ll get the job done' +
+          '. When asked, be specific about what you\nwant, so "raw carrot"' +
+          'instead of "carrot". It might still fail though...')
 
     some_food = raw_input("\nTell me what food you'd like to learn about: ")
 
@@ -212,8 +213,8 @@ if __name__ == "__main__":
         print " Here's just the nutritional data for 100g ".center(80, "*")
         base_food_dict = usda_ndb.get_food_report(nutritional_db_no)
     except:
-        print ("\nLol, so... shit's particularly kickass today and there's" +
-               "nothing I can do for you.\nSorry, scro.")
+        print("\nLol, so... shit's particularly kickass today and there's" +
+              "nothing I can do for you.\nSorry, scro.")
     else:
         for key, value in base_food_dict.iteritems():
             print key, " : ", value
