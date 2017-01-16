@@ -197,22 +197,31 @@ if __name__ == "__main__":
     usda_ndb = pull_nutritional_data()
 
     # prompt user for string of food they want...
-    some_food = raw_input("Tell me what food you'd like to learn about: ")
+    print ('\nWelcome to the USDA Nutritional Database. I will be your guide' +
+           '. This isn\'t going \nto be pretty, but we\'ll get the job done' +
+           '. When asked, be specific about what you\nwant, so "raw carrot"' +
+           'instead of "carrot". It might still fail though...')
 
-    # the first number we find
-    nutritional_db_no = usda_ndb.get_food_ndbno(some_food)
-    print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
+    some_food = raw_input("\nTell me what food you'd like to learn about: ")
 
-    # all macros, some micros
-    print " Here's just the nutritional data for 100g ".center(80, "*")
-    base_food_dict = usda_ndb.get_food_report(nutritional_db_no)
-    for key, value in base_food_dict.iteritems():
-        print key, " : ", value
+    try:
+        # the first number we find
+        nutritional_db_no = usda_ndb.get_food_ndbno(some_food)
+        print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
+        # all macros, some micros
+        print " Here's just the nutritional data for 100g ".center(80, "*")
+        base_food_dict = usda_ndb.get_food_report(nutritional_db_no)
+    except:
+        print ("\nLol, so... shit's particularly kickass today and there's" +
+               "nothing I can do for you.\nSorry, scro.")
+    else:
+        for key, value in base_food_dict.iteritems():
+            print key, " : ", value
 
-    # other known measurements
-    print ""
-    print " Here's all known measurements of this food ".center(80, "*")
-    measures_dicts = usda_ndb.get_food_measurements(nutritional_db_no)
-    for measure_dict in measures_dicts:
-        print "label: ", measure_dict['label']
-        print "amount in this measurment: ", measure_dict['eqv'], "g\n"
+        # other known measurements
+        print ""
+        print " Here's all known measurements of this food ".center(80, "*")
+        measures_dicts = usda_ndb.get_food_measurements(nutritional_db_no)
+        for measure_dict in measures_dicts:
+            print "label: ", measure_dict['label']
+            print "amount in this measurment: ", measure_dict['eqv'], "g\n"
