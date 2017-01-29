@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # usda API script and libraries by jessebot to add stuff to maybeyou.live
 # only tested with Python 2.7.12
+from collections import OrderedDict
 import json
 import requests
 import yaml
@@ -24,10 +25,22 @@ class pull_nutritional_data():
     # grab custom USDA issued API key
     usda_key = get_usda_key()
 
-    def get_food_ndbno(self, food_str):
+    def get_food_ndbno(self, food_str, food_group_str=None):
+        # base keys we have to pass in
+        keys = ["format=json", "q=" + food_str, "max=25", "offset=0"]
+
+        # if they want to be granular about their search...
+        if food_group_str:
+            group = food_group_str.replace(" ", "%20")
+            keys.append("fg=" + group)
+
+        # the API key wold be helpful...
+        keys.append("api_key=" + self.usda_key)
+
+        # create a stellar URL
+        data = "&".join(keys)
+
         # bother the USDA. They're not doing anything important anyway...
-        data = "&".join(['format=json', 'q=' + food_str, 'max=25', 'offset=0',
-                         'api_key=' + self.usda_key])
         resp = requests.get('http://api.nal.usda.gov/usda/ndb/search/?' + data)
         report_dict = json.loads(resp.text)['list']
         return report_dict['item'][0]['ndbno']
@@ -204,25 +217,56 @@ if __name__ == "__main__":
           'instead of "carrot". It might still fail though...')
 
     some_food = raw_input("\nTell me what food you'd like to learn about: ")
+    initial_fg_dict = {'1': 'Vegetables and Vegetable Products',
+                       '2': 'Legumes and Legume Products',
+                       '3': 'Nut and Seed Products',
+                       '4': 'Fruits and Fruit Juices',
+                       '5': 'Fats and Oils',
+                       '6': 'Cereal Grains and Pasta',
+                       '7': 'Spices and Herbs',
+                       '8': 'Baked Products',
+                       '9': 'Breakfast Cereals',
+                       '10': 'Soups, Sauces, and Gravies',
+                       '11': 'Dairy and Egg Products',
+                       '12': 'Poultry Products',
+                       '13': 'Beef Products',
+                       '14': 'Pork Products',
+                       '15': 'Lamb, Veal, and Game Products',
+                       '16': 'Finfish and Shellfish Products',
+                       '17': 'Sausages and Luncheon Meats',
+                       '18': 'Beverages',
+                       '19': 'American Indian/Alaska Native Foods',
+                       '20': 'Meals, Entrees, and Side Dishes',
+                       '21': 'Snacks',
+                       '22': 'Sweets',
+                       '23': 'Baby Foods',
+                       '24': 'Branded Food Products Database'}
+    fg_dict = OrderedDict(sorted(initial_fg_dict.items(), key=lambda t: t[0]))
 
-    try:
-        # the first number we find
-        nutritional_db_no = usda_ndb.get_food_ndbno(some_food)
-        print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
-        # all macros, some micros
-        print " Here's just the nutritional data for 100g ".center(80, "*")
-        base_food_dict = usda_ndb.get_food_report(nutritional_db_no)
-    except:
-        print("\nLol, so... shit's particularly kickass today, and there's " +
-              "nothing I can do for you.\nSorry, scro.")
-    else:
-        for key, value in base_food_dict.iteritems():
-            print key, " : ", value
+    # make them select a category to filter results
+    for key, value in fg_dict.iteritems():
+        print key, ":", value
+    some_kind = raw_input("\nType the number of the category you need: ")
 
-        # other known measurements
-        print ""
-        print " Here's all known measurements of this food ".center(80, "*")
-        measures_dicts = usda_ndb.get_food_measurements(nutritional_db_no)
-        for measure_dict in measures_dicts:
-            print "label: ", measure_dict['label']
-            print "amount in this measurment: ", measure_dict['eqv'], "g\n"
+    # try:
+    # the first number we find
+    nutritional_db_no = usda_ndb.get_food_ndbno(some_food,
+                                                fg_dict.get(some_kind))
+    print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
+    # all macros, some micros
+    print " Here's just the nutritional data for 100g ".center(80, "*")
+    base_food_dict = usda_ndb.get_food_report(nutritional_db_no)
+    # except Exception as e:
+    #     print("\nLol, so... shit's particularly kickass today, and there's " +
+    #           "nothing I can do for you.\nSorry, scro.", e)
+    # else:
+    for key, value in base_food_dict.iteritems():
+        print key, " : ", value
+
+    # other known measurements
+    print ""
+    print " Here's all known measurements of this food ".center(80, "*")
+    measures_dicts = usda_ndb.get_food_measurements(nutritional_db_no)
+    for measure_dict in measures_dicts:
+        print "label: ", measure_dict['label']
+        print "amount in this measurment: ", measure_dict['eqv'], "g\n"
