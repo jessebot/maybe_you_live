@@ -1,0 +1,82 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-submit">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 70px;
+      }
+      paper-card {
+            --paper-card-background-color: #3d415a;
+            --paper-card-header-color: #a4aaca;
+      }
+      #notes {
+        @apply(--layout-vertical);
+        @apply(--layout-wrap);
+        height: 344px;
+        width: 384px;
+      }
+    
+      #notes > paper-card {
+        box-sizing: border-box;
+        max-width: 184px;
+        margin: 4px;
+        flex: 0 0 auto;
+      }
+    </style>
+
+    <div class="card">
+      Let's get started!
+      <paper-input label="Enter the title of your recipe!" style="padding-left: 120px;padding-right: 120px;"></paper-input>
+    </div>
+    <div class="card">
+      <paper-material elevation="3">What meal type is this? Check all that apply!</paper-material>
+      <paper-checkbox>Breakfast</paper-checkbox>
+      <paper-checkbox>Lunch</paper-checkbox>
+      <paper-checkbox>Dinner</paper-checkbox>
+      <paper-checkbox>Snack</paper-checkbox>
+      <paper-checkbox>Dessert</paper-checkbox>
+    </div>
+    <div class="card">
+      <paper-material elevation="3">What cuisine type is this? Check all that apply!</paper-material>
+      <paper-checkbox>American</paper-checkbox>
+      <paper-checkbox>Chinese</paper-checkbox>
+      <paper-checkbox>Caribbean</paper-checkbox>
+      <paper-checkbox>French</paper-checkbox>
+      <paper-checkbox>German</paper-checkbox>
+      <paper-checkbox>Greek</paper-checkbox>
+      <paper-checkbox>Indian</paper-checkbox>
+      <paper-checkbox>Italian</paper-checkbox>
+      <paper-checkbox>Japanese</paper-checkbox>
+      <paper-checkbox>Korean</paper-checkbox>
+      <paper-checkbox>Mexican</paper-checkbox>
+      <paper-checkbox>Mediterranean</paper-checkbox>
+      <paper-checkbox>Thai</paper-checkbox>
+      <paper-checkbox>Vietnamese</paper-checkbox>
+    </div>
+    <div class="card">
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-submit',
+    });
+  </script>
+</dom-module>
