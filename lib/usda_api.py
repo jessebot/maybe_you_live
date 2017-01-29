@@ -68,8 +68,13 @@ class pull_nutritional_data():
 
         # bother the USDA. They're not doing anything important anyway...
         resp = requests.get('http://api.nal.usda.gov/usda/ndb/search/?' + data)
-        report_dict = json.loads(resp.text)['list']
-        return report_dict['item'][0]['ndbno']
+        report_dict = json.loads(resp.text)['list']['item']
+
+        # let's get granular if they're not being specific.
+        if not food_group_str:
+            return report_dict
+        else:
+            return report_dict[0]['ndbno']
 
     def get_food_report(self, usda_id):
         """
@@ -247,22 +252,31 @@ if __name__ == "__main__":
     # make them select a category to filter results
     for key, value in usda_ndb.fg_dict.iteritems():
         print key, ":", value
-    some_kind = raw_input("\nType the letter of the category you need: ")
+    some_kind = raw_input("\nType the letter of the category you need " +
+                          "(leave blank for a list of names from db): ")
 
+    # the first number we find
+    nutritional_db_no = usda_ndb.get_food_ndbno(some_food, some_kind)
+
+    # if they didn't pass in ANYTHING
+    if not some_kind:
+        for index, item in enumerate(nutritional_db_no):
+            print index, ":", item['name']
+        food_id = raw_input("\nWhich number best matches: ")
+        nutritional_db_no = nutritional_db_no[int(food_id)]['ndbno']
+
+    print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
     try:
-        # the first number we find
-        nutritional_db_no = usda_ndb.get_food_ndbno(some_food, some_kind)
-        print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
         # all macros, some micros
         print " Here's just the nutritional data for 100g ".center(80, "*")
         base_food_dict = usda_ndb.get_food_report(nutritional_db_no)
     except Exception as e:
         print("\nLol, so... shit's particularly kickass today, and there's " +
-              "nothing I can do for you.\nSorry, scro.", e)
+              "nothing I can do for you.\nSorry, scro.")
     else:
         for key, value in base_food_dict.iteritems():
             print key, " : ", value
-    
+
         # other known measurements
         print ""
         print " Here's all known measurements of this food ".center(80, "*")
