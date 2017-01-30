@@ -1,0 +1,52 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-start">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 70px;
+      }
+
+      paper-card {
+            --paper-card-background-color: #3d415a;
+            --paper-card-header-color: #a4aaca;
+      }
+
+      #notes {
+        @apply(--layout-vertical);
+        @apply(--layout-wrap);
+        height: 344px;
+        width: 384px;
+      }
+    
+      #notes > paper-card {
+        box-sizing: border-box;
+        max-width: 184px;
+        margin: 4px;
+        flex: 0 0 auto;
+      }
+    </style>
+
+    <div class="card">
+      <h2>Let us begin the process!</h2>
+      <p>Let me know what restrictions you have ^_^</p>
+    </div>
+    <div id="notes">
+        <paper-card heading="Cobalt has nice abs." class="cyan">
+        <div class="card-actions">
+          <p>Let us begin the feast!<br />Let me know what restrictions you have ^_^</p>
+        </div>
+        </paper-card>
+    </div>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-start',
+    });
+  </script>
+
+</dom-module>

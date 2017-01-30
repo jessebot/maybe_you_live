@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="shared-styles.html">
 
@@ -7,39 +8,91 @@
     <style include="shared-styles">
       :host {
         display: block;
-        padding: 70px;
+        padding: 120px;
       }
 
-      paper-card {
-            --paper-card-background-color: #3d415a;
-            --paper-card-header-color: #a4aaca;
-      }
-
-      #notes {
+      .about {
         @apply(--layout-vertical);
         @apply(--layout-wrap);
-        height: 344px;
-        width: 384px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 5px;
       }
-    
-      #notes > paper-card {
-        box-sizing: border-box;
-        max-width: 184px;
-        margin: 4px;
-        flex: 0 0 auto;
+
+      .lines {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+      }
+
+      .column-pretty {
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
+      small {
+        color: #90a4ae;
+      }
+
+      paper-button {
+        margin-bottom: 20px;
+        text-transform: lowercase;
       }
     </style>
 
-    <div class="card">
-      <h2>Let us begin the process!</h2>
-      <p>Let me know what restrictions you have ^_^</p>
-    </div>
-    <div id="notes">
-        <paper-card heading="Cobalt has nice abs." class="cyan">
-        <div class="card-actions">
-          <p>Let us begin the feast!<br />Let me know what restrictions you have ^_^</p>
+    <paper-card class="about">
+        <h3>Recipe Search.</h3>
+        <div class="card-actions lines">
+          <div class="column-pretty">
+            <h4><small>Allergies/Aversions</small></h4><p />
+            <small><paper-button toggles raised>coconut</paper-button></small>
+            <small><paper-button toggles raised>corn</paper-button></small>
+            <small><paper-button toggles raised active>dairy</paper-button></small>
+            <small><paper-button toggles raised active>eggs</paper-button></small>
+            <small><paper-button toggles raised active>meat</paper-button></small>
+            <small><paper-button toggles raised>nuts</paper-button></small>
+            <small><paper-button toggles raised>soy</paper-button></small>
+          </div>
+          <div class="column-pretty">
+            <h4><small>Meal Type</small></h4><p />
+            <small><paper-button toggles raised active>Breakfast</paper-button></small>
+            <small><paper-button toggles raised active>Lunch</paper-button></small>
+            <small><paper-button toggles raised active>Dinner</paper-button></small>
+            <small><paper-button toggles raised active>Snacks</paper-button></small>
+          </div>
         </div>
-        </paper-card>
+    </paper-card>
+
+    <br />
+    <div class="lines">
+          <paper-card class="column-pretty">
+            Japanese 7 Spice Stirfry
+              <div class="card-actions">
+                  <small>Fats: 1g Protein: 9001g Carbs: 10g</small><p />
+              </div>
+          </paper-card>
+          <paper-card class="column-pretty">
+            Butternut Squash Soup
+              <div class="card-actions">
+                  <small>Fats: 3lg Protein: 7g Carbs: 140g</small><p />
+              </div>
+          </paper-card>
+          <paper-card class="column-pretty">
+            Curried Mushroom Onion Hummus
+              <div class="card-actions">
+                  <small>Fats: 2g Protein: 51g Carbs: 150g</small><p />
+              </div>
+          </paper-card>
     </div>
   </template>
 
