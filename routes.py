@@ -18,6 +18,7 @@ if __name__ == "__main__":
     application = web.Application([(r"/", MainHandler),
                                    (r"/submit", MainHandler),
                                    (r"/start", MainHandler),
+                                   (r"/check", MainHandler),
                                    (r"/about", MainHandler),
                                    (r"/static/(.*)", web.StaticFileHandler,
                                     {"path": settings['static_path']})

@@ -1,0 +1,67 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-material/paper-material.html">
+<link rel="import" href="./shared-styles.html">
+
+<dom-module id="my-check">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding-left: 120px;
+        padding-right: 120px;
+        padding-top: 60px;
+        padding-bottom: 60px;
+      }
+      paper-card {
+            --paper-card-background-color: #3d415a;
+            --paper-card-header-color: #a4aaca;
+      }
+      paper-button {
+        margin-bottom: 20px;
+        text-transform: lowercase;
+      }
+      .button-group-thing {
+        display: block;
+        padding-top: 5px;
+        padding-bottom: 10px;
+        padding-left: 100px;
+        padding-right: 100px;
+      }
+    </style>
+
+    <div class="card">
+      <paper-input label="To get started, enter the title of your food!" style="padding-left: 150px;padding-right: 150px;"></paper-input>
+      <br />
+
+      <p><h4>What kind of food is this?</h4></p>
+      <div class="button-group-thing">
+         <paper-button toggles raised>Food</paper-button>
+      </div>
+
+      <br />
+      <paper-button toggles raised style="background-color: darkslateblue;width: 300px;">
+        Next Section
+      </paper-button>
+      </div><!-- card -->
+  </template>
+
+  <script>
+    Polymer({
+      is: 'my-check',
+      }
+    });
+  </script>
+</dom-module>
