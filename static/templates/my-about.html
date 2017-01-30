@@ -12,25 +12,13 @@
         padding: 110px 110px;
       }
 
-      paper-card.rate {
+      paper-card.about {
+        @apply(--layout-vertical);
+        padding: 20px;
+      }
+
+      .lines {
         @apply(--layout-horizontal);
-      }
-
-      .rate-image {
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-right: 40px;
-        width: 166px;
-        height: 250px;
-        background: url('/static/images/MYLL-about-hack.png');
-      }
-
-      .rate-content {
-        @apply(--layout-flex);
-        float: left;
-        padding-top: 30px;
-        padding-left: 30px;
-        padding-right: 30px;
       }
 
       small {
@@ -38,20 +26,43 @@
       }
     </style>
 
-    <paper-card class="rate">
-      <div class="rate-content">
-        <h3>Core Foundations</h3>
-        <p />
-        Balance is critical
-        <br /><small>Nutritional variety is key to living a healthier life.</small>
-        <p />
-        Know what you eat
-        <br /><small>Always read nutrition labels and ingredients.</small></p>
-        <p />
-        Stick with it
-        <br /><small>Hobbits produce results, and results take second breakfast.</small></p>
-      </div>
-      <div class="rate-image"></div>
+    <paper-card class="about">
+        <h3>Foundational Guidelines</h3>
+        <div class="card-actions lines">
+          <p />
+          Balance is critical
+          <br /><small>Nutritional variety is key to living a healthier life.</small>
+          <p />
+          Know what you eat
+          <br /><small>Always read nutrition labels and ingredients.</small>
+          <p />
+          Stick with it
+          <br /><small>Hobbits produce results, and results take second breakfast.</small>
+        </div>
+    </paper-card>
+    <br />
+    <paper-card class="about">
+        <h3>Fighting Misconceptions</h3>
+        <div class="card-actions">
+          <p />
+          A calorie is <b>not</b> a calorie
+          <br /><small>Calories are an overall metric to measure nutritional intake, but where those calories come from is critical.</small>
+          <p />
+          Healthy eating is not expensive, or time consuming
+          <br /><small>Don’t let the $9 pile of iceberg lettuce at the deli, or convenience-based advertising mislead you...</small>
+          <p />
+          Sugary drinks, sweets, and fast food
+          <br /><small>Yes, you have to give them up in order to make permanent, healthy changes.</small>
+          <p />
+          Fad diets are not inherently healthy
+          <br /><small>Fad diets are marketed as being easy to adopt, and lifestyle convenient, but often don't promote long term health habit changes. They encourage yo-yo dieting.</small>
+          <p />
+          "I don't do breakfast"
+          <br /><small>What most people consider "breakfast" is not healthy in any way. Redefine what "breakfast" is for you, and try it again. Depending on lifestyle, the body benefits greatly from having a balance of nutrients shortly after waking up. This affects both energy levels, and appetite throughout the day. A sugary breakfast will make you feel full for a brief period, give you a brief burst of energy, then make you hungry shortly after, whereas a nutrient balanced breakfast will give you sustained energy, and keep you feeling more full for longer.</small>
+          <p />
+          No one is perfect
+          <br /><small>Failure is part of learning how to improve. Good times make for good habits, but bad times make for good lessons.</small>
+        </div>
     </paper-card>
   </template>
   

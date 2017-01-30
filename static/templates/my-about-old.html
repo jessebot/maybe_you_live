@@ -1,0 +1,64 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-about">
+
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block;
+        padding: 110px 110px;
+      }
+
+      paper-card.rate {
+        @apply(--layout-horizontal);
+      }
+
+      .rate-image {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-right: 40px;
+        width: 166px;
+        height: 250px;
+        background: url('/static/images/MYLL-about-hack.png');
+      }
+
+      .rate-content {
+        @apply(--layout-flex);
+        float: left;
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      small {
+        color: #90a4ae;
+      }
+    </style>
+
+    <paper-card class="rate">
+      <div class="rate-content">
+        <h3>Core Foundations</h3>
+        <p />
+        Balance is critical
+        <br /><small>Nutritional variety is key to living a healthier life.</small>
+        <p />
+        Know what you eat
+        <br /><small>Always read nutrition labels and ingredients.</small></p>
+        <p />
+        Stick with it
+        <br /><small>Hobbits produce results, and results take second breakfast.</small></p>
+      </div>
+      <div class="rate-image"></div>
+    </paper-card>
+  </template>
+  
+  <script>
+    Polymer({
+      is: 'my-about',
+    });
+  </script>
+
+</dom-module>
