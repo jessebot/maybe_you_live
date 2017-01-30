@@ -71,7 +71,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
          <paper-button toggles raised>Vietnamese</paper-button>
       </div>
       <br />
-      <paper-button toggles raised style="background-color: darkslateblue;width: 300px;" on-click="{{ go-step-two }}">
+      <paper-button toggles raised style="background-color: darkslateblue;width: 300px;">
         Next Section
       </paper-button>
       </div><!-- card -->
@@ -80,6 +80,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <script>
     Polymer({
       is: 'my-submit',
+      listeners: {'tap': 'goStepTwo'},
+
+      goStepTwo: function() {
+        console.log("hai mom");
+      }
     });
   </script>
 </dom-module>
