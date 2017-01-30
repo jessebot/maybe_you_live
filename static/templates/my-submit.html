@@ -9,6 +9,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-checkbox/paper-checkbox.html">
@@ -26,51 +27,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             --paper-card-background-color: #3d415a;
             --paper-card-header-color: #a4aaca;
       }
-      #notes {
-        @apply(--layout-vertical);
-        @apply(--layout-wrap);
-        height: 344px;
-        width: 384px;
+      paper-button {
+        margin-bottom: 20px;
       }
-    
-      #notes > paper-card {
-        box-sizing: border-box;
-        max-width: 184px;
-        margin: 4px;
-        flex: 0 0 auto;
+      .button-group-thing {
+        display: block;
+        padding-top: 5px;
+        padding-bottom: 10px;
+        padding-left: 100px;
+        padding-right: 100px;
       }
     </style>
 
     <div class="card">
-      Let's get started!
-      <paper-input label="Enter the title of your recipe!" style="padding-left: 120px;padding-right: 120px;"></paper-input>
-    </div>
-    <div class="card">
-      <paper-material elevation="3">What meal type is this? Check all that apply!</paper-material>
-      <paper-checkbox>Breakfast</paper-checkbox>
-      <paper-checkbox>Lunch</paper-checkbox>
-      <paper-checkbox>Dinner</paper-checkbox>
-      <paper-checkbox>Snack</paper-checkbox>
-      <paper-checkbox>Dessert</paper-checkbox>
-    </div>
-    <div class="card">
-      <paper-material elevation="3">What cuisine type is this? Check all that apply!</paper-material>
-      <paper-checkbox>American</paper-checkbox>
-      <paper-checkbox>Chinese</paper-checkbox>
-      <paper-checkbox>Caribbean</paper-checkbox>
-      <paper-checkbox>French</paper-checkbox>
-      <paper-checkbox>German</paper-checkbox>
-      <paper-checkbox>Greek</paper-checkbox>
-      <paper-checkbox>Indian</paper-checkbox>
-      <paper-checkbox>Italian</paper-checkbox>
-      <paper-checkbox>Japanese</paper-checkbox>
-      <paper-checkbox>Korean</paper-checkbox>
-      <paper-checkbox>Mexican</paper-checkbox>
-      <paper-checkbox>Mediterranean</paper-checkbox>
-      <paper-checkbox>Thai</paper-checkbox>
-      <paper-checkbox>Vietnamese</paper-checkbox>
-    </div>
-    <div class="card">
+      <paper-input label="To get started, enter the title of your recipe!" style="padding-left: 150px;padding-right: 150px;"></paper-input>
+      <br />
+      <p><h4>What meal type is this?</h4></p>
+      <div class="button-group-thing">
+      <paper-button toggles raised>Breakfast</paper-button>
+      <paper-button toggles raised>Lunch</paper-button>
+      <paper-button toggles raised>Dinner</paper-button>
+      <paper-button toggles raised>Snack</paper-button>
+      <paper-button toggles raised>Dessert</paper-button>
+      </div>
+
+      <p><h4>What cuisine type is this?</h4></p>
+      <div class="button-group-thing">
+      <paper-button toggles raised>American</paper-button>
+      <paper-button toggles raised>Chinese</paper-button>
+      <paper-button toggles raised>Caribbean</paper-button>
+      <paper-button toggles raised>French</paper-button>
+      <paper-button toggles raised>German</paper-button>
+      <paper-button toggles raised>Greek</paper-button>
+      <paper-button toggles raised>Indian</paper-button>
+      <paper-button toggles raised>Italian</paper-button>
+      <paper-button toggles raised>Japanese</paper-button>
+      <paper-button toggles raised>Korean</paper-button>
+      <paper-button toggles raised>Mexican</paper-button>
+      <paper-button toggles raised>Mediterranean</paper-button>
+      <paper-button toggles raised>Thai</paper-button>
+      <paper-button toggles raised>Vietnamese</paper-button>
+      </div>
     </div>
   </template>
 
