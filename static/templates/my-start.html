@@ -8,7 +8,9 @@
     <style include="shared-styles">
       :host {
         display: block;
-        padding: 120px;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 110px;
       }
       .about {
         @apply(--layout-vertical);
@@ -16,8 +18,8 @@
         padding-left: 10px;
         padding-right: 10px;
         padding-top: 15px;
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
         margin-top: 10px;
         margin-bottom: 5px;
       }
@@ -27,12 +29,23 @@
         @apply(--layout-wrap);
       }
 
+      .column-pretty-top {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        padding-top: 5px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
       .column-pretty {
         @apply(--layout-vertical);
         @apply(--layout-flex);
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 15px;
+        padding-top: 20px;
+        padding-bottom: 5px;
         margin-left: 10px;
         margin-right: 10px;
         margin-top: 10px;
@@ -52,8 +65,10 @@
     <paper-card class="about">
         <h3>Recipe Search.</h3>
         <div class="card-actions lines">
-          <div class="column-pretty">
+          <div class="column-pretty-top">
             <h4><small>Allergies/Aversions</small></h4><p />
+          </div>
+          <div class="column-pretty-top">
             <small><paper-button toggles raised>avocado</paper-button></small>
             <small><paper-button toggles raised>coconut</paper-button></small>
             <small><paper-button toggles raised>corn</paper-button></small>
@@ -63,13 +78,6 @@
             <small><paper-button toggles raised>nuts</paper-button></small>
             <small><paper-button toggles raised>soy</paper-button></small>
             <small><paper-button toggles raised>strawberries</paper-button></small>
-          </div>
-          <div class="column-pretty">
-            <h4><small>Meal Type</small></h4><p />
-            <small><paper-button toggles raised active>Breakfast</paper-button></small>
-            <small><paper-button toggles raised active>Lunch</paper-button></small>
-            <small><paper-button toggles raised active>Dinner</paper-button></small>
-            <small><paper-button toggles raised active>Snacks</paper-button></small>
           </div>
         </div>
     </paper-card>
@@ -87,6 +95,13 @@
               <div class="card-actions">
                   <small>Fats: 3lg Protein: 7g Carbs: 140g</small><p />
               </div>
+          </paper-card>
+          <paper-card class="column-pretty">
+            Coconut milk matcha latte
+              <div class="card-actions">
+                  <small>Fats: 2g Protein: 5001g Carbs: 150g</small><p />
+              </div>
+          </paper-card>
           </paper-card>
           <paper-card class="column-pretty">
             Curried Mushroom Onion Hummus
