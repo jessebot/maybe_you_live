@@ -12,17 +12,33 @@
         padding: 120px;
       }
 
-      paper-card.about {
+      .about {
         @apply(--layout-vertical);
-        padding: 20px;
+        @apply(--layout-wrap);
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 5px;
       }
 
       .lines {
         @apply(--layout-horizontal);
+        @apply(--layout-wrap);
       }
 
       .column-pretty {
-        padding: 10px;
+        @apply(--layout-vertical);
+        @apply(--layout-flex);
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-top: 10px;
+        margin-bottom: 5px;
       }
 
       small {
@@ -73,6 +89,118 @@
           <p />
           No one is perfect
           <br /><small>Failure is part of learning how to improve. Good times make for good habits, but bad times make for good lessons.</small>
+        </div>
+    </paper-card>
+    <br />
+    <paper-card class="about">
+        <h3>Objectives</h3>
+        <div class="card-actions">
+          <p />
+          Remove. Sugar.
+          <small><ul>
+              <li>Several things happen when you remove added sugars from your diet...</li>
+              <li>Over time, you crave it less and less</li>
+              <li>Naturally occurring sugars in foods become more pronounced</li>
+              <li>Remember that sugar is a drug like any other and, first and foremost, <i>you are an addict, surrounded by other addicts.</i> If you're trying to quit a drug, say alcohol, you don’t hang out at the bar anymore. <i>You are no longer part of their vicious cycle.</i> <b>Make it known.</b> If your friends want to hang out with you, force them to eat healthy, or meet up with them <u>after</u> they're done ruining themselves:</li>
+              <li>You no longer go to ice cream shops or bakeries.</li>
+              <li>You don’t have dessert.</li>
+              <li>You request the check immediately, and remind people you have places to be after this affair.</li>
+              <li>You suggest preparing meals.</li>
+            </ul>
+          </small>
+          <p />
+          Mindful Eating
+          <small><ul>
+              <li>Meal time is meal time. It’s not to be done while watching screens, walking, or anything else.</li>
+              <li>Chew your food. Slowly.</li>
+              <li>Sit up straight, focus on your posture, the taste of the food you’re eating, and take sips of water in between each bite.</li>
+              <li>You read nutrition labels now. Always. You read the ingredients, and scan for added sugars.</li>
+          </ul>
+          </small>
+          <p />
+          Change your environment
+          <br /><small>Having unhealthy foods, or foods that are outside of your nutritional plan, that are nearby or within reach are more likely to be eaten.  Don’t have them near you. Down the road, you may be able to incorporate these kinds of items back into your diet, but break the habits first.</small>
+        </div>
+    </paper-card>
+    <br />
+    <paper-card class="about">
+        <h3>"A rose by any other name..."</h3>
+        <div class="card-actions lines">
+          <div class="column-pretty">
+            <small>
+            <ul>
+            <li>Alcohol?</li>
+            <li>Agave nectar</li>
+            <li>Barbados sugar</li>
+            <li>Barley malt, Barley malt syrup</li>
+            <li>Beet sugar</li>
+            <li>Brown sugar</li>
+            <li>Buttered syrup</li>
+            <li>Cane juice, Cane juice crystals</li>
+            <li>Cane sugar</li>
+            <li>Caramel</li>
+            <li>Carob syrup</li>
+            <li>Castor sugar</li>
+            <li>Coconut palm sugar</li>
+            <li>Coconut sugar</li>
+            <li>Confectioner’s sugar</li>
+            <li>Corn sweetener</li>
+            <li>Corn syrup, Corn syrup solids</li>
+            <li>Date sugar</li>
+            <li>Dehydrated cane juice</li>
+            <li>Demerara Sugar</li>
+            </ul>
+          </small>
+          </div>
+          <div class="column-pretty">
+            <small>
+            <ul>
+            <li>Dextrin</li>
+            <li>Dextrose</li>
+            <li>Evaporated cane juice</li>
+            <li>Free-flowing brown sugars </li>
+            <li>Fructose</li>
+            <li>Fruit juice, fruit juice concentrate</li>
+            <li>Glucose, glucose solids</li>
+            <li>Golden sugar, golden syrup</li>
+            <li>Grape sugar</li>
+            <li>HFCS(High-Fructose Corn Syrup)</li>
+            <li>Honey</li>
+            <li>Icing sugar</li>
+            <li>Invert sugar</li>
+            <li>Malt syrup</li>
+            <li>Maltodextrin</li>
+            <li>Maltol</li>
+            <li>Maltose</li>
+            <li>Mannose</li>
+            <li>Maple syrup</li>
+            <li>Molasses</li>
+            </ul>
+            </small>
+          </div>
+          <div class="column-pretty">
+            <small>
+            <ul>
+            <li>Muscovado</li>
+            <li>Palm sugar</li>
+            <li>Panocha</li>
+            <li>Powdered sugar </li>
+            <li>Raw sugar</li>
+            <li>Refiner’s syrup</li>
+            <li>Rice syrup</li>
+            <li>Saccharose</li>
+            <li>Sorghum syrup</li>
+            <li>Sucrose</li>
+            <li>Sugar (granulated)</li>
+            <li>Sweet sorghum</li>
+            <li>Syrup</li>
+            <li>Treacle</li>
+            <li>Turbinado sugar</li>
+            <li>Yellow sugar</li>
+            <li>This list cray.</li>
+            </small>
+            </ul>
+          </div>
         </div>
     </paper-card>
   </template>
