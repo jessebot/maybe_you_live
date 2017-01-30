@@ -29,6 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       paper-button {
         margin-bottom: 20px;
+        text-transform: lowercase;
       }
       .button-group-thing {
         display: block;
@@ -42,33 +43,38 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="card">
       <paper-input label="To get started, enter the title of your recipe!" style="padding-left: 150px;padding-right: 150px;"></paper-input>
       <br />
+
       <p><h4>What meal type is this?</h4></p>
       <div class="button-group-thing">
-      <paper-button toggles raised>Breakfast</paper-button>
-      <paper-button toggles raised>Lunch</paper-button>
-      <paper-button toggles raised>Dinner</paper-button>
-      <paper-button toggles raised>Snack</paper-button>
-      <paper-button toggles raised>Dessert</paper-button>
+         <paper-button toggles raised>Breakfast</paper-button>
+         <paper-button toggles raised>Lunch</paper-button>
+         <paper-button toggles raised>Dinner</paper-button>
+         <paper-button toggles raised>Snack</paper-button>
+         <paper-button toggles raised>Dessert</paper-button>
       </div>
 
       <p><h4>What cuisine type is this?</h4></p>
       <div class="button-group-thing">
-      <paper-button toggles raised>American</paper-button>
-      <paper-button toggles raised>Chinese</paper-button>
-      <paper-button toggles raised>Caribbean</paper-button>
-      <paper-button toggles raised>French</paper-button>
-      <paper-button toggles raised>German</paper-button>
-      <paper-button toggles raised>Greek</paper-button>
-      <paper-button toggles raised>Indian</paper-button>
-      <paper-button toggles raised>Italian</paper-button>
-      <paper-button toggles raised>Japanese</paper-button>
-      <paper-button toggles raised>Korean</paper-button>
-      <paper-button toggles raised>Mexican</paper-button>
-      <paper-button toggles raised>Mediterranean</paper-button>
-      <paper-button toggles raised>Thai</paper-button>
-      <paper-button toggles raised>Vietnamese</paper-button>
+         <paper-button toggles raised>American</paper-button>
+         <paper-button toggles raised>Chinese</paper-button>
+         <paper-button toggles raised>Caribbean</paper-button>
+         <paper-button toggles raised>French</paper-button>
+         <paper-button toggles raised>German</paper-button>
+         <paper-button toggles raised>Greek</paper-button>
+         <paper-button toggles raised>Indian</paper-button>
+         <paper-button toggles raised>Italian</paper-button>
+         <paper-button toggles raised>Japanese</paper-button>
+         <paper-button toggles raised>Korean</paper-button>
+         <paper-button toggles raised>Mexican</paper-button>
+         <paper-button toggles raised>Mediterranean</paper-button>
+         <paper-button toggles raised>Thai</paper-button>
+         <paper-button toggles raised>Vietnamese</paper-button>
       </div>
-    </div>
+      <br />
+      <paper-button toggles raised style="background-color: darkslateblue;width: 300px;" on-click="{{ go-step-two }}">
+        Next Section
+      </paper-button>
+      </div><!-- card -->
   </template>
 
   <script>
