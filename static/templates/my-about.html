@@ -14,7 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-about">
-<link rel="import" href="../css/denim.css" type="css">
+  <link rel="import" href="../css/denim.css" type="css">
   <template>
     <style include="shared-styles">
       :host {
@@ -22,44 +22,57 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 110px 110px;
         position: absolute;
       }
+
+      paper-card.rate {
+        @apply(--layout-horizontal);
+      }
+
+      .rate-image {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-right: 40px;
+        width: 166px;
+        height: 250px;
+        background: url('/static/images/MYLL-about-hack.png');
+      }
+
+      .rate-content {
+        @apply(--layout-flex);
+        float: left;
+        padding-top: 30px;
+        padding-left: 30px;
+        padding-right: 30px;
+      }
+
+      small {
+        color: #90a4ae;
+      }
     </style>
 
-<style is="custom-style">
-  paper-card.rate { @apply(--layout-horizontal); }
-  .rate-image {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-right: 40px;
-    width: 166px;
-    height: 250px;
-    background: url('/static/images/MYLL-about-hack.png');
-  }
-  .rate-content {
-    @apply(--layout-flex);
-    float: left;
-    padding-top: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
-  }
-</style>
-<paper-card class="rate">
-  <div class="rate-content">
-      <p><h1>Core foundation ideas</h1></p>
-      <p><ul>
-      <li><i>Balance is critical</i> : Nutritional variety is key to living a healthier life.</li>
-      <li><i>Know what you eat</i> : Always read nutrition labels and ingredients.</li>
-      <li><i>Stick with it</i> : Habits produce results and results take time.</li>
-      <li><i>No one is perfect</i> : Failure is part of learning how to improve (reword)</li>
-      </ul></p>
-    </div>
-  </div>
-  <div class="rate-image"></div>
-</paper-card>
+    <paper-card class="rate">
+      <div class="rate-content">
+        <h3>Core Foundations</h3>
+        <p />
+        Balance is critical
+        <br /><small>Nutritional variety is key to living a healthier life.</small>
+        <p />
+        Know what you eat
+        <br /><small>Always read nutrition labels and ingredients.</small></p>
+        <p />
+        Stick with it
+        <br /><small>Hobbits produce results, and results take second breakfast.</small></p>
+        <p />
+        No one is perfect
+        <br /><small>Failure is part of learning how to improve (reword)</small></p>
+      </div>
+      <div class="rate-image"></div>
+    </paper-card>
   </template>
-
+  
   <script>
     Polymer({
       is: 'my-about',
     });
   </script>
+
 </dom-module>

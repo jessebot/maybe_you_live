@@ -19,38 +19,36 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 70px;
       }
-  paper-card {
-        --paper-card-background-color: #3d415a;
-        --paper-card-header-color: #a4aaca;
-  }
-  #notes {
-    @apply(--layout-vertical);
-    @apply(--layout-wrap);
-    height: 344px;
-    width: 384px;
-  }
-
-  #notes > paper-card {
-    box-sizing: border-box;
-    max-width: 184px;
-    margin: 4px;
-    flex: 0 0 auto;
-  }
+      paper-card {
+            --paper-card-background-color: #3d415a;
+            --paper-card-header-color: #a4aaca;
+      }
+      #notes {
+        @apply(--layout-vertical);
+        @apply(--layout-wrap);
+        height: 344px;
+        width: 384px;
+      }
+    
+      #notes > paper-card {
+        box-sizing: border-box;
+        max-width: 184px;
+        margin: 4px;
+        flex: 0 0 auto;
+      }
     </style>
 
     <div class="card">
-      <h1>OM NOM NOM NOM</h1>
-      <p>Let us begin the feast!<br />Let me know what restrictions you have ^_^</p>
-      
-      <!-- <paper-input label="Just start typing..." required auto-validate error-message="needs some text!"></paper-input> -->
+      <h2>Let us begin the process!</h2>
+      <p>Let me know what restrictions you have ^_^</p>
     </div>
-<div id="notes">
-    <paper-card heading="Cobalt has nice abs." class="cyan">
-    <div class="card-actions">
-      <p>Let us begin the feast!<br />Let me know what restrictions you have ^_^</p>
+    <div id="notes">
+        <paper-card heading="Cobalt has nice abs." class="cyan">
+        <div class="card-actions">
+          <p>Let us begin the feast!<br />Let me know what restrictions you have ^_^</p>
+        </div>
+        </paper-card>
     </div>
-</div>
-    </paper-card>
   </template>
 
   <script>
