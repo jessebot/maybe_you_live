@@ -9,7 +9,7 @@
     <style include="shared-styles">
       :host {
         display: block;
-        padding: 110px 110px;
+        padding: 120px;
       }
 
       paper-card.about {
@@ -21,6 +21,10 @@
         @apply(--layout-horizontal);
       }
 
+      .column-pretty {
+        padding: 10px;
+      }
+
       small {
         color: #90a4ae;
       }
@@ -29,15 +33,22 @@
     <paper-card class="about">
         <h3>Foundational Guidelines</h3>
         <div class="card-actions lines">
-          <p />
+
+          <div class="column-pretty">
           Balance is critical
           <br /><small>Nutritional variety is key to living a healthier life.</small>
-          <p />
+          </div>
+
+          <div class="column-pretty">
           Know what you eat
           <br /><small>Always read nutrition labels and ingredients.</small>
-          <p />
+          </div>
+
+          <div class="column-pretty">
           Stick with it
           <br /><small>Hobbits produce results, and results take second breakfast.</small>
+          </div>
+
         </div>
     </paper-card>
     <br />
@@ -45,7 +56,7 @@
         <h3>Fighting Misconceptions</h3>
         <div class="card-actions">
           <p />
-          A calorie is <b>not</b> a calorie
+          A calorie is <i>not</i> a calorie
           <br /><small>Calories are an overall metric to measure nutritional intake, but where those calories come from is critical.</small>
           <p />
           Healthy eating is not expensive, or time consuming

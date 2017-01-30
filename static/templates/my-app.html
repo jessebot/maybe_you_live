@@ -72,42 +72,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         tail="{{subroute}}"></app-route>
 
   <app-drawer-layout force-narrow>
-      <!-- Drawer content -->
-      <app-drawer id="drawer" swipe-open>
+    <!-- Drawer content -->
+    <app-drawer id="drawer" swipe-open>
+      <app-toolbar>
+        <a href="http://maybeyou.live/">
+          <div main-title style="padding-top: 20px; padding-left: 15px;">
+            <img src="../images/MYLL-logotest-1.png" width="191">
+          </div>
+        </a>
+      </app-toolbar>
+      <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+        <a name="start" href="/start">Search</a>
+        <a name="submit" href="/submit">Submit</a>
+        <a name="about" href="/about">About</a>
+      </iron-selector>
+    </app-drawer>
+    
+    <!-- Header -->
+    <app-header-layout has-scrolling-region>
+      <app-header reveals condenses effects="waterfall">
         <app-toolbar>
-         <div main-title style="padding-top: 20px; padding-left: 15px;">
-           <a href="http://maybeyou.live/"><img src="../images/MYLL-logotest-1.png" width="191"></a>
-         </div>
+          <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+          <a href="http://maybeyou.live/"><img src="../images/MYLL-logotest-1.png" width="171" style="padding-left: 5px;"></a>
         </app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="start" href="/start">Start Here</a>
-          <a name="submit" href="/submit">Submit Recipe</a>
-          <a name="about" href="/about">About</a>
-        </iron-selector>
-     </app-drawer>
-
-      <!-- Header -->
-      <app-header-layout has-scrolling-region>
-
-        <app-header reveals condenses effects="waterfall">
-          <app-toolbar>
-            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-            <a href="http://maybeyou.live/"><img src="../images/MYLL-logotest-1.png" width="171" style="padding-left: 5px;"></a>
-          </app-toolbar>
-        </app-header>
-      </app-header-layout>
-
-      <!-- Actual content -->
-        <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            fallback-selection="view404"
-            role="main">
-          <my-start name="start"></my-start>
-          <my-submit name="submit"></my-submit>
-          <my-about name="about"></my-about>
-          <my-view404 name="view404"></my-view404>
-        </iron-pages>
+      </app-header>
+    </app-header-layout>
+    
+    <!-- Actual content -->
+    <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
+      <my-start name="start"></my-start>
+      <my-submit name="submit"></my-submit>
+      <my-about name="about"></my-about>
+      <my-view404 name="view404"></my-view404>
+    </iron-pages>
   </app-drawer-layout>
   </template>
 
@@ -146,4 +143,5 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
     });
   </script>
+
 </dom-module>
