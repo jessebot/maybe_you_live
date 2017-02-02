@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # MySQL querying and updates for a recipe site
 # By Jesse Hunt
+import argparse
 import sys
 import MySQLdb
 import yaml
@@ -56,7 +57,8 @@ class recipeDatabaseJunk():
         self.cur.execute(q)
 
 if __name__ == "__main__":
-    help = 'A script that lets you query/update a recipe databse'
+    usage = 'Usage: recipe_db.py [-q/-i/-n] [<input>/<query>/<name>]'
+    help = 'A script that lets you query/update a recipe database. ' + usage
     parser = argparse.ArgumentParser(description=help)
     parser.add_argument('--input', '-i', action='store_true', default=False,
                         help='This has to be a dictionary of information ' +
@@ -70,9 +72,13 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
 
+
     input_dict = args.input
     query = args.query
     name = args.name
+
+    if not args.input and not args.query:
+        print usage
 
     database = recipeDatabaseJunk()
 
@@ -87,5 +93,3 @@ if __name__ == "__main__":
             database.get_recipes()
 
     database.destroy()
-
-    print "ALL DONE"

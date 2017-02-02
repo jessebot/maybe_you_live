@@ -44,7 +44,7 @@
         @apply(--layout-flex);
         padding-left: 10px;
         padding-right: 10px;
-        padding-top: 20px;
+        padding-top: 5px;
         padding-bottom: 5px;
         margin-left: 10px;
         margin-right: 10px;
@@ -60,6 +60,11 @@
         margin-bottom: 20px;
         text-transform: lowercase;
       }
+
+      /*paper-card {
+        --paper-card-header-color: white;
+      }*/
+
     </style>
 
     <paper-card class="about">
@@ -75,6 +80,7 @@
             <small><paper-button toggles raised active>dairy</paper-button></small>
             <small><paper-button toggles raised active>eggs</paper-button></small>
             <small><paper-button toggles raised active>meat</paper-button></small>
+            <small><paper-button toggles raised active>mushrooms</paper-button></small>
             <small><paper-button toggles raised>nuts</paper-button></small>
             <small><paper-button toggles raised>soy</paper-button></small>
             <small><paper-button toggles raised>strawberries</paper-button></small>
@@ -84,27 +90,29 @@
 
     <br />
     <div class="lines">
-          <paper-card class="column-pretty">
-            Japanese 7 Spice Stirfry
+          <paper-card image="/static/images/maybeyoulive_chowmein.png" class="column-pretty">
+            <div class="card-content">
+            Chow Mein Thingie
+            </div>
               <div class="card-actions">
                   <small>Fats: 1g Protein: 9001g Carbs: 10g</small><p />
               </div>
           </paper-card>
           <paper-card class="column-pretty">
-            Butternut Squash Soup
+            <p>Butternut Squash Soup</p>
               <div class="card-actions">
                   <small>Fats: 3lg Protein: 7g Carbs: 140g</small><p />
               </div>
           </paper-card>
           <paper-card class="column-pretty">
-            Coconut milk matcha latte
+            <p>Coconut milk matcha latte</p>
               <div class="card-actions">
                   <small>Fats: 2g Protein: 5001g Carbs: 150g</small><p />
               </div>
           </paper-card>
           </paper-card>
           <paper-card class="column-pretty">
-            Curried Mushroom Onion Hummus
+            <p>Curried Mushroom Onion Hummus</p>
               <div class="card-actions">
                   <small>Fats: 2g Protein: 51g Carbs: 150g</small><p />
               </div>
