@@ -2,7 +2,8 @@
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
 <link rel="import" href="./shared-styles.html">
-<link rel="import" href="./recipes.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/iron-data-table/iron-data-table.html">
 
 <dom-module id="my-search">
   <template>
@@ -99,18 +100,6 @@
                   <small>Fats: 1g Protein: 9001g Carbs: 10g</small><p />
               </div>
           </paper-card>
-          <paper-card class="column-pretty">
-            <p>Butternut Squash Soup</p>
-              <div class="card-actions">
-                  <small>Fats: 3lg Protein: 7g Carbs: 140g</small><p />
-              </div>
-          </paper-card>
-          <paper-card class="column-pretty">
-            <p>Coconut milk matcha latte</p>
-              <div class="card-actions">
-                  <small>Fats: 2g Protein: 5001g Carbs: 150g</small><p />
-              </div>
-          </paper-card>
           </paper-card>
           <paper-card class="column-pretty">
             <p>Curried Mushroom Onion Hummus</p>
@@ -119,7 +108,29 @@
               </div>
           </paper-card>
     </div>
-    <recipes></recipes>
+  <template is="dom-bind">
+    <iron-ajax auto
+        id="ajax"
+        url="getallrecipes.json"
+        handle-as="json"
+        last-response="{{data}}"></iron-ajax>
+
+    <iron-list scroll-target="document" items="[[data]]" as="item" grid>
+        <template>
+          <div class="lines">
+            <paper-card class="column-pretty">
+              <p>[[item.name]]</p>
+              <div class="card-actions">
+                <small>
+                Cal: [[item.calories]] Protein: [[item.protein]]
+                </small>
+              </div>
+            </paper-card>
+          </div>
+        </template>
+    </iron-list>
+
+  </template>
   </template>
 
   <script>
