@@ -91,27 +91,10 @@
     </paper-card>
 
     <br />
-    <div class="lines">
-          <paper-card image="/static/images/maybeyoulive_chowmein.png" class="column-pretty">
-            <div class="card-content">
-            Chow Mein Thingie
-            </div>
-              <div class="card-actions">
-                  <small>Fats: 1g Protein: 9001g Carbs: 10g</small><p />
-              </div>
-          </paper-card>
-          </paper-card>
-          <paper-card class="column-pretty">
-            <p>Curried Mushroom Onion Hummus</p>
-              <div class="card-actions">
-                  <small>Fats: 2g Protein: 51g Carbs: 150g</small><p />
-              </div>
-          </paper-card>
-    </div>
   <template is="dom-bind">
     <iron-ajax auto
         id="ajax"
-        url="getallrecipes.json"
+        url="/getallrecipes"
         handle-as="json"
         last-response="{{data}}"></iron-ajax>
 
@@ -122,7 +105,7 @@
               <p>[[item.name]]</p>
               <div class="card-actions">
                 <small>
-                Cal: [[item.calories]] Protein: [[item.protein]]
+              Cal: [[item.calories]] Protein: [[item.protein]] Sugar: [[item.sugar]] Carbs: [[item.carbs]] Lipids: [[item.lipids]]
                 </small>
               </div>
             </paper-card>

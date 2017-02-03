@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # Jesse's tornado + polymer mess
+import json
 import os
 import sys
 sys.path.append('./lib')
@@ -35,7 +36,7 @@ class GetAllRecipes(web.RequestHandler):
     def get(self):
         database = recipeDatabase("./.config/database_config.yaml")
         recipe_list = database.get_recipes()
-        self.write(recipe_list)
+        self.write(json.dumps(recipe_list))
  
 if __name__ == "__main__":
     application = web.Application([(r"/", MainHandler),
