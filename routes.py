@@ -1,10 +1,10 @@
 #!/usr/bin/python
-# Jesse's tornado + polymer mess
+# Jesse Hitch's recipe website <3 
+# 2/3/17
 import json
-import os
 import sys
 sys.path.append('./lib')
-from recipe_db import recipeDatabase
+from myll_db import recipeDatabase
 from tornado import web, wsgi
 import tornado.escape
 import tornado.ioloop
