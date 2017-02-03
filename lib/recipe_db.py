@@ -7,27 +7,27 @@ import MySQLdb
 import yaml
 
 
-def get_database_variable(global_variable):
+def get_database_variable(yaml_file, global_variable):
     """ gets global variable given string variable name"""
-    with open('../.config/database_config.yaml', 'r') as f:
+    with open(yaml_file, 'r') as f:
         doc = yaml.load(f)
     txt = doc[global_variable]
     return txt
 
 
-class recipeDatabaseJunk():
+class recipeDatabase():
     """Class to do all the database lifting on maybeyou.live"""
-
-    # grab all the yaml info
-
-    db_host = get_database_variable("db_host")
-    db_user = get_database_variable("db_user")
-    db_pass = get_database_variable("db_pass")
-    db_name = get_database_variable("db_name")
-
-    db = MySQLdb.connect(host=db_host, user=db_user, passwd=db_pass,
-                         db=db_name)
-    cur = db.cursor()
+    def __init__(self, yaml_file):
+        # grab all the yaml info
+    
+        db_host = get_database_variable(yaml_file, "db_host")
+        db_user = get_database_variable(yaml_file, "db_user")
+        db_pass = get_database_variable(yaml_file, "db_pass")
+        db_name = get_database_variable(yaml_file, "db_name")
+    
+        self.db = MySQLdb.connect(host=db_host, user=db_user, passwd=db_pass,
+                                  db=db_name)
+        self.cur = self.db.cursor()
 
     def destroy(self,):
         """close database connection"""
@@ -37,15 +37,10 @@ class recipeDatabaseJunk():
         """go get the recipes, probably for the front page"""
         if not name and not restrictions:
             self.cur.execute("SELECT * FROM recipes")
-            # print all the first cell of all the rows
-            for row in self.cur.fetchall():
-                print row
         else:
             q = "SELECT * FROM recipes where name='{0}'".format(name)
             self.cur.execute(q)
-            # print all the first cell of all the rows
-            for row in self.cur.fetchall():
-                print row
+        return self.cur.fetchall()
 
     def insert_new_recipe(self, name, cuisine, prep_time, meal_type,
                           pre_vs_post, points_dict, macros_dict):
@@ -80,7 +75,7 @@ if __name__ == "__main__":
     if not args.input and not args.query:
         print usage
 
-    database = recipeDatabaseJunk()
+    database = recipeDatabase("../.config/database_config.yaml")
 
     if input_dict:
         database.insert_new_recipe(name, cuisine, prep_time, meal_type,
@@ -88,8 +83,10 @@ if __name__ == "__main__":
 
     if query:
         if name:
-            database.get_recipes(name)
+            for row in database.get_recipes(name):
+                print row
         else:
-            database.get_recipes()
+            for row in database.get_recipes():
+                print row
 
     database.destroy()
