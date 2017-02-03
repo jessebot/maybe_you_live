@@ -31,6 +31,7 @@ class recipeDatabase():
 
     def destroy(self,):
         """close database connection"""
+        self.db.commit()
         self.db.close()
 
     def get_recipes(self, name=None, restrictions=None):

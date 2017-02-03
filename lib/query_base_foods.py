@@ -40,3 +40,4 @@ if __name__ == "__main__":
     # fix the database
     database.insert_food(nutritional_db_no, name, calories, carbs, protein,
                          sugar, lipids, fiber, final_measurements)
+    database.destroy()

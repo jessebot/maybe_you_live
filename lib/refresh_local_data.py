@@ -42,3 +42,4 @@ if __name__ == "__main__":
         # fix the database
         database.update_food(nutritional_db_no, calories, carbs, protein,
                              sugar, lipids, fiber, final_measurements)
+    database.destroy()
