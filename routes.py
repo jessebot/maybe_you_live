@@ -1,7 +1,13 @@
+#!/usr/bin/python
 # Jesse's tornado + polymer mess
 import os
 import sys
+sys.path.append('./lib')
+from recipe_db import recipeDatabase
 from tornado import web, wsgi
+import tornado.escape
+import tornado.ioloop
+import tornado.web
 import wsgiref.simple_server
 
 settings = {"static_path": "./static",
@@ -14,12 +20,34 @@ class MainHandler(web.RequestHandler):
         self.render(settings['static_path'] + "/templates/index.html",
                     app_name=settings['app_name'])
 
+class VersionHandler(web.RequestHandler):
+    def get(self):
+        response = { 'version': '.5'}
+        self.write(response)
+ 
+class GetRecipeByIdHandler(web.RequestHandler):
+    def get(self, id):
+        response = { 'id': int(id),
+                     'name': 'ON NOM NOM'}
+        self.write(response)
+
+class GetAllRecipes(web.RequestHandler):
+    def get(self):
+        database = recipeDatabase("./.config/database_config.yaml")
+        recipe_tuple = database.get_recipes()
+        response = {'recipes': recipe_tuple}
+        self.write(response)
+ 
 if __name__ == "__main__":
     application = web.Application([(r"/", MainHandler),
                                    (r"/submit", MainHandler),
                                    (r"/start", MainHandler),
                                    (r"/check", MainHandler),
                                    (r"/about", MainHandler),
+                                   (r"/getallrecipes", GetAllRecipes),
+                                   (r"/getrecipebyid/([0-9]+)",
+                                       GetRecipeByIdHandler),
+                                   (r"/version", VersionHandler),
                                    (r"/static/(.*)", web.StaticFileHandler,
                                     {"path": settings['static_path']})
                                    ], **settings)
