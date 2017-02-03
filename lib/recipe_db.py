@@ -35,12 +35,11 @@ class recipeDatabase():
 
     def get_recipes(self, name=None, restrictions=None):
         """go get the recipes, probably for the front page"""
+        q = ("SELECT id, name, calories, carbs, lipids, protein, sugar ")
         if not name and not restrictions:
-            self.cur.execute("SELECT id, name, nutrient_macros FROM recipes")
+            self.cur.execute(q + "FROM recipes")
         else:
-            q = ("SELECT id, name, nutrient_macros FROM recipes where " +
-                 "name='{0}'".format(name))
-            self.cur.execute(q)
+            self.cur.execute(q + "FROM recipes where name='{0}'".format(name))
 
         # here's the return from the database
         tuple_o_recipes = self.cur.fetchall()
@@ -52,15 +51,66 @@ class recipeDatabase():
             new_dict = {}
             new_dict["id"] = row[0]
             new_dict["name"] = row[1]
-            new_dict["nutrient_macros"] = row[2]
+            new_dict["calories"] = row[2]
+            new_dict["carbs"] = row[3]
+            new_dict["lipids"] = row[4]
+            new_dict["protein"] = row[5]
+            new_dict["sugar"] = row[6]
             final_list.append(new_dict)
         
-        # hack for tornado...
-        final_dict = {}
-        final_dict["recipes"] = final_list
-        return final_dict
+        return final_list
 
     def insert_new_recipe(self, name, cuisine, prep_time, meal_type,
+                          pre_vs_post, points_dict, macros_dict):
+        """Takes recipe info, inserts to database"""
+        q = ("""INSERT into recipes VALUES (0, {0}, 0, {1}, {2}, {3}, """ +
+             """{4}, {5}, {6});""").format(name, cuisine, prep_time,
+                                           meal_type, pre_vs_post,
+                                           points_dict, macros_dict)
+        self.cur.execute(q)
+
+    def get_food(self, name=None):
+        """go get the base food and info about it"""
+        q = ("SELECT ndbno, name, calories, carbs, lipids, protein, sugar ")
+        self.cur.execute(q + "FROM base_foods where name='{0}'".format(name))
+
+        # here's the return from the database
+        tuple_o_foods = self.cur.fetchall()
+
+        final_list = []
+
+        # formatting things much more nicely
+        for row in tuple_o_foods:
+            new_dict = {}
+            new_dict["ndbno"] = row[0]
+            new_dict["name"] = row[1]
+            new_dict["calories"] = row[2]
+            new_dict["carbs"] = row[3]
+            new_dict["lipids"] = row[4]
+            new_dict["protein"] = row[5]
+            new_dict["sugar"] = row[6]
+            final_list.append(new_dict)
+        
+        return final_list
+
+    def get_all_foods(self):
+        """go get the base foods by their ndbno"""
+        self.cur.execute("SELECT ndbno FROM base_foods")
+
+        # here's the return from the database
+        tuple_o_recipes = self.cur.fetchall()
+
+        final_list = []
+
+        # formatting things much more nicely
+        for row in tuple_o_recipes:
+            new_dict = {}
+            new_dict["ndbno"] = row[0]
+            final_list.append(new_dict)
+        
+        return final_list
+
+    def insert_new_food(self, name, cuisine, prep_time, meal_type,
                           pre_vs_post, points_dict, macros_dict):
         """Takes recipe info, inserts to database"""
         q = ("""INSERT into recipes VALUES (0, {0}, 0, {1}, {2}, {3}, """ +
