@@ -98,15 +98,13 @@ class recipeDatabase():
         self.cur.execute("SELECT ndbno FROM base_foods")
 
         # here's the return from the database
-        tuple_o_recipes = self.cur.fetchall()
+        food_ids = self.cur.fetchall()
 
         final_list = []
 
         # formatting things much more nicely
-        for row in tuple_o_recipes:
-            new_dict = {}
-            new_dict["ndbno"] = row[0]
-            final_list.append(new_dict)
+        for row in food_ids:
+            final_list.append(str(row[0]))
         
         return final_list
 
@@ -151,12 +149,12 @@ if __name__ == "__main__":
 
     if query:
         if name:
-            recipe_dict = database.get_recipes(name)['recipes']
-            for row in recipe_dict:
+            recipe_list = database.get_recipes(name)
+            for row in recipe_list:
                 print row
         else:
-            recipe_dict = database.get_recipes()['recipes']
-            for row in recipe_dict:
+            recipe_list = database.get_recipes()
+            for row in recipe_list:
                 print row
 
     database.destroy()
