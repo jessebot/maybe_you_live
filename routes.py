@@ -1,5 +1,5 @@
 #!/usr/bin/python
-# Jesse Hitch's recipe website <3 
+# Jesse Hitch's recipe website <3
 # 2/3/17
 import json
 import sys
@@ -21,23 +21,27 @@ class MainHandler(web.RequestHandler):
         self.render(settings['static_path'] + "/templates/index.html",
                     app_name=settings['app_name'])
 
+
 class VersionHandler(web.RequestHandler):
     def get(self):
-        response = { 'version': '.5'}
+        response = {'version': '.5'}
         self.write(response)
- 
+
+
 class GetRecipeByIdHandler(web.RequestHandler):
     def get(self, id):
-        response = { 'id': int(id),
-                     'name': 'ON NOM NOM'}
+        response = {'id': int(id),
+                    'name': 'ON NOM NOM'}
         self.write(response)
+
 
 class GetAllRecipes(web.RequestHandler):
     def get(self):
         database = recipeDatabase("./.config/database_config.yaml")
         recipe_list = database.get_recipes()
         self.write(json.dumps(recipe_list))
- 
+
+
 if __name__ == "__main__":
     application = web.Application([(r"/", MainHandler),
                                    (r"/submit", MainHandler),
