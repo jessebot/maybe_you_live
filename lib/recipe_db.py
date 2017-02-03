@@ -108,13 +108,25 @@ class recipeDatabase():
         
         return final_list
 
-    def insert_new_food(self, name, cuisine, prep_time, meal_type,
-                          pre_vs_post, points_dict, macros_dict):
-        """Takes recipe info, inserts to database"""
-        q = ("""INSERT into recipes VALUES (0, {0}, 0, {1}, {2}, {3}, """ +
-             """{4}, {5}, {6});""").format(name, cuisine, prep_time,
-                                           meal_type, pre_vs_post,
-                                           points_dict, macros_dict)
+    def update_food(self, ndbno, name, calories, carbs, protein, sugar,
+                    lipids, fiber, measurements):
+        """go update the base foods by their ndbno"""
+
+        # formatting things much more nicely
+        q = ("""update base_foods set name='{0}', calories='{1}', """ +
+             """carbs='{2}', protein='{3}', sugar='{4}', lipids='{5}', """ +
+             """fiber='{6}', measurements='{7}' where """ +
+             """ndbno='{8}'""").format(name, calories, carbs, protein, sugar,
+                                       lipids, fiber, measurements, ndbno)
+        self.cur.execute(q)
+
+    def insert_new_food(self, ndbno, name, calories, carbs, protein, sugar,
+                        lipids, fiber, measurements):
+        """Takes food info, inserts to database"""
+        q = ("""INSERT into base_foods VALUES ({0}, {1}, {2}, {3}, """ +
+             """{4}, {5}, {6}, {7});""").format(ndbno, name, calories, carbs,
+                                                protein, sugar, lipids, fiber,
+                                                measurements)
         self.cur.execute(q)
 
 if __name__ == "__main__":
