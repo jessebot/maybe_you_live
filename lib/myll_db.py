@@ -19,12 +19,12 @@ class recipeDatabase():
     """Class to do all the database lifting on maybeyou.live"""
     def __init__(self, yaml_file):
         # grab all the yaml info
-    
+
         db_host = get_database_variable(yaml_file, "db_host")
         db_user = get_database_variable(yaml_file, "db_user")
         db_pass = get_database_variable(yaml_file, "db_pass")
         db_name = get_database_variable(yaml_file, "db_name")
-    
+
         self.db = MySQLdb.connect(host=db_host, user=db_user, passwd=db_pass,
                                   db=db_name)
         self.cur = self.db.cursor()
@@ -57,7 +57,7 @@ class recipeDatabase():
             new_dict["protein"] = row[5]
             new_dict["sugar"] = row[6]
             final_list.append(new_dict)
-        
+
         return final_list
 
     def insert_new_recipe(self, name, cuisine, prep_time, meal_type,
@@ -90,7 +90,7 @@ class recipeDatabase():
             new_dict["protein"] = row[5]
             new_dict["sugar"] = row[6]
             final_list.append(new_dict)
-        
+
         return final_list
 
     def get_all_foods(self):
@@ -105,32 +105,33 @@ class recipeDatabase():
         # formatting things much more nicely
         for row in food_ids:
             final_list.append(str(row[0]))
-        
+
         return final_list
 
-    def update_food(self, ndbno, name, calories, carbs, protein, sugar,
-                    lipids, fiber, measurements):
+    def update_food(self, ndbno, calories, carbs, protein, sugar, lipids,
+                    fiber, measurements):
         """go update the base foods by their ndbno"""
 
         # formatting things much more nicely
-        q = ("""update base_foods set name='{0}', calories='{1}', """ +
-             """carbs='{2}', protein='{3}', sugar='{4}', lipids='{5}', """ +
-             """fiber='{6}', measurements='{7}' where """ +
-             """ndbno='{8}'""").format(name, calories, carbs, protein, sugar,
+        q = ('''update base_foods set calories="{0}", carbs="{1}",''' +
+             '''protein="{2}", sugar="{3}", lipids="{4}", fiber="{5}", ''' +
+             '''measurements="{6}" where ''' +
+             '''ndbno="{7}"''').format(calories, carbs, protein, sugar,
                                        lipids, fiber, measurements, ndbno)
         self.cur.execute(q)
 
-    def insert_new_food(self, ndbno, name, calories, carbs, protein, sugar,
-                        lipids, fiber, measurements):
+    def insert_food(self, ndbno, name, calories, carbs, protein, sugar,
+                    lipids, fiber, measurements):
         """Takes food info, inserts to database"""
-        q = ("""INSERT into base_foods VALUES ({0}, {1}, {2}, {3}, """ +
-             """{4}, {5}, {6}, {7});""").format(ndbno, name, calories, carbs,
-                                                protein, sugar, lipids, fiber,
-                                                measurements)
+        q = ("""INSERT into base_foods VALUES""" +
+             """("{0}", "{1}", "{2}", "{3}", "{4}", "{5}", "{6}",""" +
+             """"{7}", "{8}")""").format(ndbno, name, calories, carbs, protein,
+                                         sugar, lipids, fiber, measurements)
         self.cur.execute(q)
 
+
 if __name__ == "__main__":
-    usage = 'Usage: recipe_db.py [-q/-i/-n] [<input>/<query>/<name>]'
+    usage = 'Usage: myll_db.py [-q/-i/-n] [<input>/<query>/<name>]'
     help = 'A script that lets you query/update a recipe database. ' + usage
     parser = argparse.ArgumentParser(description=help)
     parser.add_argument('--input', '-i', action='store_true', default=False,
@@ -144,7 +145,6 @@ if __name__ == "__main__":
                         default=None)
 
     args = parser.parse_args()
-
 
     input_dict = args.input
     query = args.query

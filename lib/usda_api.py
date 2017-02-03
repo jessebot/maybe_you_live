@@ -74,7 +74,7 @@ class pull_nutritional_data():
         if not food_group_str:
             return report_dict
         else:
-            return report_dict[0]['ndbno']
+            return report_dict[0]['ndbno'], report_dict[0]['name']
 
     def get_food_report(self, usda_id):
         """
@@ -256,7 +256,7 @@ if __name__ == "__main__":
                           "(leave blank for a list of names from db): ")
 
     # the first number we find
-    nutritional_db_no = usda_ndb.get_food_ndbno(some_food, some_kind)
+    nutritional_db_no, name = usda_ndb.get_food_ndbno(some_food, some_kind)
 
     # if they didn't pass in ANYTHING
     if not some_kind:
@@ -265,7 +265,8 @@ if __name__ == "__main__":
         food_id = raw_input("\nWhich number best matches: ")
         nutritional_db_no = nutritional_db_no[int(food_id)]['ndbno']
 
-    print "\nWe pulled nutrition ID: ", nutritional_db_no, "\n"
+    print "\nWe pulled the following food: ", name 
+    print "( Nutrition Database Number:", nutritional_db_no, ")\n"
     try:
         # all macros, some micros
         print " Here's just the nutritional data for 100g ".center(80, "*")
