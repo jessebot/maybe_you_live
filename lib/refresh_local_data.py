@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # only tested with Python 2.7.12
-# script to refresh a list of base foods every night
+# script to refresh a list of base foods every night by Jesse Hitch
 from myll_db import recipeDatabase
 from usda_api import pull_nutritional_data
 import json

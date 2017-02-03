@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # only tested with Python 2.7.12
-# script to query base foods
+# script to query base foods by Jesse Hitch
 from myll_db import recipeDatabase
 from usda_api import pull_nutritional_data
 
