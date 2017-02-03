@@ -36,11 +36,29 @@ class recipeDatabase():
     def get_recipes(self, name=None, restrictions=None):
         """go get the recipes, probably for the front page"""
         if not name and not restrictions:
-            self.cur.execute("SELECT * FROM recipes")
+            self.cur.execute("SELECT id, name, nutrient_macros FROM recipes")
         else:
-            q = "SELECT * FROM recipes where name='{0}'".format(name)
+            q = ("SELECT id, name, nutrient_macros FROM recipes where " +
+                 "name='{0}'".format(name))
             self.cur.execute(q)
-        return self.cur.fetchall()
+
+        # here's the return from the database
+        tuple_o_recipes = self.cur.fetchall()
+
+        final_list = []
+
+        # formatting things much more nicely
+        for row in tuple_o_recipes:
+            new_dict = {}
+            new_dict["id"] = row[0]
+            new_dict["name"] = row[1]
+            new_dict["nutrient_macros"] = row[2]
+            final_list.append(new_dict)
+        
+        # hack for tornado...
+        final_dict = {}
+        final_dict["recipes"] = final_list
+        return final_dict
 
     def insert_new_recipe(self, name, cuisine, prep_time, meal_type,
                           pre_vs_post, points_dict, macros_dict):
@@ -83,10 +101,12 @@ if __name__ == "__main__":
 
     if query:
         if name:
-            for row in database.get_recipes(name):
+            recipe_dict = database.get_recipes(name)['recipes']
+            for row in recipe_dict:
                 print row
         else:
-            for row in database.get_recipes():
+            recipe_dict = database.get_recipes()['recipes']
+            for row in recipe_dict:
                 print row
 
     database.destroy()

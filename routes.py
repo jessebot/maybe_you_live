@@ -34,9 +34,8 @@ class GetRecipeByIdHandler(web.RequestHandler):
 class GetAllRecipes(web.RequestHandler):
     def get(self):
         database = recipeDatabase("./.config/database_config.yaml")
-        recipe_tuple = database.get_recipes()
-        response = {'recipes': recipe_tuple}
-        self.write(response)
+        recipe_list = database.get_recipes()
+        self.write(recipe_list)
  
 if __name__ == "__main__":
     application = web.Application([(r"/", MainHandler),
