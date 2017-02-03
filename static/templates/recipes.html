@@ -1,0 +1,37 @@
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<dom-module id="recipes">
+  <template>
+    <iron-ajax auto
+        id="ajax"
+        url="http://maybeyou.live/getallrecipes"
+        handle-as="json"
+        last-response="{{data}}"></iron-ajax>
+    <iron-data-table items="[[data]]">
+      <data-table-column width="100px" name="Recipes">
+        <template>[[item.recipes]]</template>
+      </data-table-column>
+      <!--<data-table-column width="10px" name="Method">
+        <template>[[item.method]]</template>
+      </data-table-column>
+      <data-table-column width="50px" name="Inputs">
+        <template>[[item.inputs]]</template>
+      </data-table-column>
+      <data-table-column width="500px" name="Outputs">
+        <template>[[item.outputs]]</template>
+      </data-table-column> -->
+    </iron-data-table>
+  </template>
+  <script>
+    (function() {
+      Polymer({
+        is: 'recipes',
+        ready: function() {
+          this.origin = window.location.protocol + '//' + window.location.hostname;
+          if (window.location.port) {
+            this.origin += ":" + window.location.port;
+          }
+        }
+      });
+    })();
+  </script>
+</dom-module>
