@@ -82,7 +82,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </a>
       </app-toolbar>
       <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-        <a name="start" href="/start">Search</a>
+        <a name="search" href="/search">Search</a>
         <a name="submit" href="/submit">Submit</a>
         <!-- <a name="check" href="/check">Check</a>-->
         <a name="about" href="/about">About</a>
@@ -101,7 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     
     <!-- Actual content -->
     <iron-pages selected="[[page]]" attr-for-selected="name" fallback-selection="view404" role="main">
-      <my-start name="start"></my-start>
+      <my-search name="search"></my-search>
       <my-submit name="submit"></my-submit>
       <!--<my-check name="check"></my-check>-->
       <my-about name="about"></my-about>
@@ -127,7 +127,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       _routePageChanged: function(page) {
-        this.page = page || 'start';
+        this.page = page || 'search';
 
         if (!this.$.drawer.persistent) {
           this.$.drawer.close();
