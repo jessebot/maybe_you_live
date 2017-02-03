@@ -1,5 +1,7 @@
-An attempt at a cooking site using tornado, polymer, and elastic search
+An attempt at a cooking site using tornado, polymer, and elastic search.
 
-You will need: bower, pip, love
+Visit us here: http://maybeyou.live
 
-Author: Jesse, kind of.
+You will need: bower, pip, love, MySQL
+
+Author: Jesse Hitch
