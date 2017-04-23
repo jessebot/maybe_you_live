@@ -1,7 +1,8 @@
-An attempt at a cooking site using tornado, polymer, and elastic search.
+An attempt at a cooking site using... react I guess? This is being totally revamped.
+Check back later.
 
 Visit us here: http://maybeyou.live
 
-You will need: bower, pip, love, MySQL
+You will need: A LOT OF HOPE.
 
 Author: Jesse Hitch
