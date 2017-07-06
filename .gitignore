@@ -1,9 +1,0 @@
-**.pyc
-.travis.yml
-.eslintrc.json
-.github
-.gitattributes
-test/**
-node_modules/**
-nohup.out
-.config/**
