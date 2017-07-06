@@ -25,7 +25,8 @@ router.get("/",function(req,res){
   app.set('views','./views');
 
   // display index.html
-  res.render('index', { json: json});
+  res.render('index');
+  // res.render('index', { json: json});
 });
 
 app.use("/",router);
@@ -48,7 +49,7 @@ app.use("*",function(req,res){
   res.sendFile(path + "404.html");
 });
 
-http.createServer(app).listen(8082, function () {
+http.createServer(app).listen(8083, function () {
   console.log('Maybeyou.live Started!');
 });
 
