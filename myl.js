@@ -41,7 +41,7 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
 app.use('/css', express.static(__dirname + '/css')); // redirect CSS dafsfads
 
-app.use('/icons', express.static(__dirname + '/icons')); // redirect images
+app.use('/fonts', express.static(__dirname + '/fonts')); // redirect images
 
 app.use('/images', express.static(__dirname + '/images')); // redirect images
 
